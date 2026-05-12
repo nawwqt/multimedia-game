@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pelajari detail komponen hardware komputer secara mendalam.">
+  <title>Detail Komponen - HardwareEdu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" style="color: var(--primary);">
+        <i class="fas fa-laptop-code"></i> HardwareEdu
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about" style="color: var(--gray-600);">Tentang</a>
+        <a href="index.html#hardware" style="color: var(--gray-600);">Materi</a>
+
+        <a href="quiz.html" style="color: #fff; background: var(--primary); padding: 10px 24px; border-radius: 50px;">Quiz</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" style="color: var(--gray-700);">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- DETAIL HERO -->
+  <section class="detail-hero" id="detailHero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="container">
+      <div class="detail-icon-large" id="detailIcon">
+        <i class="fas fa-microchip"></i>
+      </div>
+      <div>
+        <h1 id="detailTitle">Loading...</h1>
+        <p id="detailSubtitle">Memuat informasi komponen...</p>
+        <a href="index.html#hardware" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Kembali ke Materi
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL CONTENT -->
+  <section class="detail-content">
+    <div class="container">
+      <div class="detail-grid" id="detailGrid">
+        <!-- Content loaded via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        &copy; 2026 HardwareEdu. Dibuat untuk pembelajaran interaktif hardware komputer.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/hardware-data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+
+      if (!id) { window.location.href = 'index.html#hardware'; return; }
+
+      const hw = hardwareData.find(h => h.id === id);
+      if (!hw) { window.location.href = 'index.html#hardware'; return; }
+
+      // Update page title
+      document.title = `${hw.name} - HardwareEdu`;
+
+      // Update hero
+      document.getElementById('detailIcon').innerHTML = `<i class="${hw.icon}" style="color: ${hw.color};"></i>`;
+      document.getElementById('detailTitle').textContent = hw.name;
+      document.getElementById('detailSubtitle').textContent = hw.fullDesc;
+
+      // Build fungsi list
+      const fungsiHtml = hw.fungsi.map(f =>
+        `<li><i class="fas fa-check-circle" style="color: ${hw.color}; margin-top: 3px;"></i> ${f}</li>`
+      ).join('');
+
+      // Build specs
+      const specsHtml = hw.specs.map(s =>
+        `<span class="spec-tag">${s}</span>`
+      ).join('');
+
+      // Render detail content
+      document.getElementById('detailGrid').innerHTML = `
+        <div class="detail-section">
+          <h3><i class="fas fa-cogs"></i> Fungsi Utama</h3>
+          <ul>${fungsiHtml}</ul>
+        </div>
+
+        <div class="detail-section">
+          <h3><i class="fas fa-lightbulb"></i> Cara Kerja</h3>
+          <p>${hw.caraKerja}</p>
+        </div>
+
+        <div class="detail-section">
+          <h3><i class="fas fa-list-alt"></i> Spesifikasi</h3>
+          <p>Berikut adalah spesifikasi umum dari ${hw.name}:</p>
+          <div class="spec-tags">${specsHtml}</div>
+        </div>
+
+        <div class="detail-section">
+          <h3><i class="fas fa-atom"></i> Animasi Komponen</h3>
+          <div class="detail-animation">
+            <div class="component-anim">
+              <i class="${hw.icon}" style="color: ${hw.color};"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-section detail-video">
+          <h3><i class="fas fa-video"></i> Video Pembelajaran</h3>
+          <div class="video-wrapper">
+            <iframe src="${hw.videoUrl}" title="Video ${hw.name}" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <div class="detail-section detail-full-width" style="text-align: center;">
+          <h3><i class="fas fa-graduation-cap"></i> Siap Uji Pengetahuan?</h3>
+          <p style="margin-bottom: 20px;">Setelah mempelajari ${hw.name}, coba quiz untuk menguji pemahaman Anda!</p>
+          <a href="quiz.html" class="btn-primary" style="display: inline-flex;">
+            <i class="fas fa-play-circle"></i> Mulai Quiz
+          </a>
+        </div>
+      `;
+
+      // Mobile menu
+      const toggle = document.getElementById('mobileToggle');
+      const navLinks = document.getElementById('navLinks');
+      if (toggle && navLinks) {
+        toggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+          const icon = toggle.querySelector('i');
+          icon.classList.toggle('fa-bars');
+          icon.classList.toggle('fa-times');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

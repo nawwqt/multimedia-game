@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Media pembelajaran interaktif untuk mengenal komponen hardware komputer seperti motherboard, processor, RAM, dan lainnya. Belajar dengan cara visual dan menyenangkan!">
+  <title>HardwareEdu - Media Pembelajaran Interaktif Hardware Komputer</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <i class="fas fa-laptop-code"></i>
+        HardwareEdu
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">Tentang</a>
+        <a href="#hardware">Materi</a>
+
+        <a href="#testimonials">Testimoni</a>
+        <a href="quiz.html" class="nav-cta">Mulai Quiz</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ====== HERO SECTION ====== -->
+  <section class="hero" id="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-graduation-cap"></i>
+          Media Pembelajaran Multimedia
+        </div>
+        <h1>Belajar Hardware Komputer Secara <span>Interaktif</span></h1>
+        <p>Media pembelajaran multimedia untuk memahami komponen komputer dengan mudah. Eksplorasi visual, quiz seru, dan simulasi interaktif!</p>
+        <div class="hero-buttons">
+          <a href="#hardware" class="btn-primary">
+            <i class="fas fa-play-circle"></i> Mulai Belajar
+          </a>
+          <a href="#hardware" class="btn-secondary">
+            <i class="fas fa-book-open"></i> Lihat Materi
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="images/hero-bg.png" alt="Hardware Komputer Ilustrasi">
+          <div class="hero-float-card card-1">
+            <div class="float-icon" style="background: linear-gradient(135deg, #2563eb, #06b6d4);">
+              <i class="fas fa-microchip"></i>
+            </div>
+            <div class="float-card-text">
+              <strong>9 Komponen</strong>
+              <span>Hardware Utama</span>
+            </div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-icon" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="float-card-text">
+              <strong>15 Soal Quiz</strong>
+              <span>Uji Pengetahuan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== ABOUT SECTION ====== -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-left">
+          <div class="about-accent"></div>
+          <img src="images/hero-bg.png" alt="Tentang Media Pembelajaran" class="about-image-main">
+        </div>
+        <div class="about-content fade-right">
+          <div class="section-badge"><i class="fas fa-info-circle"></i> Tentang Kami</div>
+          <h2>Tentang Media Pembelajaran</h2>
+          <p>Website ini merupakan media pembelajaran berbasis multimedia yang membantu pengguna mengenal berbagai komponen hardware komputer seperti motherboard, processor, RAM, harddisk, VGA, dan lainnya. Didesain dengan pendekatan visual dan interaktif untuk memudahkan proses pembelajaran.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-laptop-code"></i></div>
+              <div>
+                <h4>Konten Visual</h4>
+                <p>Ilustrasi dan animasi menarik</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-gamepad"></i></div>
+              <div>
+                <h4>Quiz Interaktif</h4>
+                <p>Uji pemahaman dengan quiz seru</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-hand-pointer"></i></div>
+              <div>
+                <h4>Simulasi Klik</h4>
+                <p>Klik komponen untuk eksplorasi</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-mobile-alt"></i></div>
+              <div>
+                <h4>Responsif</h4>
+                <p>Bisa diakses di mana saja</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HARDWARE LEARNING SECTION ====== -->
+  <section class="section" id="hardware">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-badge"><i class="fas fa-microchip"></i> Materi Hardware</div>
+        <h2>Komponen Hardware Komputer</h2>
+        <p>Pelajari berbagai komponen utama yang membangun sebuah komputer. Klik pada setiap kartu untuk mempelajari lebih detail.</p>
+      </div>
+      <div class="hardware-grid" id="hardwareGrid">
+        <!-- Cards generated by JS -->
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ====== QUIZ PREVIEW SECTION ====== -->
+  <section class="section quiz-preview" id="quizPreview">
+    <div class="container fade-up">
+      <h2>Uji Pengetahuan Hardware Komputer</h2>
+      <p>Sudah siap menguji pemahaman Anda tentang komponen hardware? Coba quiz interaktif kami dengan timer dan skor otomatis!</p>
+      <div class="quiz-features">
+        <div class="quiz-feature"><i class="fas fa-question-circle"></i> 15 Soal Pilihan Ganda</div>
+        <div class="quiz-feature"><i class="fas fa-clock"></i> Timer Countdown</div>
+        <div class="quiz-feature"><i class="fas fa-star"></i> Skor Otomatis</div>
+        <div class="quiz-feature"><i class="fas fa-magic"></i> Animasi Interaktif</div>
+      </div>
+      <a href="quiz.html" class="btn-quiz">
+        <i class="fas fa-play-circle"></i> Mulai Quiz Sekarang
+      </a>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONIALS SECTION ====== -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-badge"><i class="fas fa-comments"></i> Testimoni</div>
+        <h2>Apa Kata Mereka?</h2>
+        <p>Pendapat dari para pengguna yang sudah belajar hardware komputer menggunakan platform ini.</p>
+        <button onclick="showTestimonialForm()" class="btn-primary" style="margin-top: 16px; font-size: 0.9rem; padding: 12px 24px;">
+          <i class="fas fa-pencil-alt"></i> Tulis Testimoni
+        </button>
+      </div>
+      <div class="testimonials-grid" id="testimonialsGrid" style="margin-bottom: 60px;">
+        <!-- Generated by JS -->
+      </div>
+
+      <!-- Testimonial Form (Hidden) -->
+      <div id="testimonialFormContainer" class="testimonial-form-container fade-up" style="display: none; background: var(--gray-50); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--gray-200); max-width: 600px; margin: 0 auto; box-shadow: var(--shadow-sm);">
+        <h3 style="text-align: center; margin-bottom: 24px; color: var(--gray-900);">Bagikan Pengalaman Anda</h3>
+        <form id="testimonialForm" onsubmit="submitTestimonial(event)">
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--gray-800);">Nama Lengkap</label>
+            <input type="text" id="tName" required style="width: 100%; padding: 12px; border: 1px solid var(--gray-300); border-radius: 8px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--gray-300)'" placeholder="Contoh: Budi Santoso">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--gray-800);">Peran / Status</label>
+            <input type="text" id="tRole" required style="width: 100%; padding: 12px; border: 1px solid var(--gray-300); border-radius: 8px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--gray-300)'" placeholder="Contoh: Siswa SMK / Mahasiswa">
+          </div>
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--gray-800);">Rating (1-5 Bintang)</label>
+            <input type="number" id="tRating" required min="1" max="5" value="5" style="width: 100%; padding: 12px; border: 1px solid var(--gray-300); border-radius: 8px; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--gray-300)'">
+          </div>
+          <div style="margin-bottom: 24px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--gray-800);">Testimoni</label>
+            <textarea id="tText" required rows="4" style="width: 100%; padding: 12px; border: 1px solid var(--gray-300); border-radius: 8px; resize: vertical; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--gray-300)'" placeholder="Ceritakan bagaimana platform ini membantu Anda belajar..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
+            <i class="fas fa-paper-plane"></i> Kirim Testimoni
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3><i class="fas fa-laptop-code"></i> HardwareEdu</h3>
+          <p>Media pembelajaran interaktif untuk mengenal dan memahami komponen hardware komputer. Belajar dengan cara yang visual, interaktif, dan menyenangkan.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <a href="#hero">Beranda</a>
+          <a href="#about">Tentang</a>
+          <a href="#hardware">Materi</a>
+
+          <a href="quiz.html">Quiz</a>
+        </div>
+        <div class="footer-col">
+          <h4>Materi</h4>
+          <a href="detail.html?id=motherboard">Motherboard</a>
+          <a href="detail.html?id=processor">Processor</a>
+          <a href="detail.html?id=ram">RAM</a>
+          <a href="detail.html?id=harddisk">Harddisk/SSD</a>
+          <a href="detail.html?id=vga">VGA Card</a>
+        </div>
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <a href="#"><i class="fas fa-envelope" style="margin-right:8px;"></i>info@hardwareedu.id</a>
+          <a href="#"><i class="fas fa-phone" style="margin-right:8px;"></i>+62 812-3456-7890</a>
+          <a href="#"><i class="fas fa-map-marker-alt" style="margin-right:8px;"></i>Jakarta, Indonesia</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 HardwareEdu. Dibuat untuk pembelajaran interaktif hardware komputer.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/hardware-data.js"></script>
+  <script src="js/quiz-data.js"></script>
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

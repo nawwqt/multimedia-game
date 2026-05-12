@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz interaktif untuk menguji pengetahuan hardware komputer Anda.">
+  <title>Quiz Hardware Komputer - HardwareEdu</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="background: var(--gray-50);">
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo" style="color: var(--primary);">
+        <i class="fas fa-laptop-code"></i> HardwareEdu
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#about" style="color: var(--gray-600);">Tentang</a>
+        <a href="index.html#hardware" style="color: var(--gray-600);">Materi</a>
+
+        <a href="quiz.html" style="color: #fff; background: var(--primary); padding: 10px 24px; border-radius: 50px;">Quiz</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" style="color: var(--gray-700);">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- QUIZ HERO -->
+  <section class="quiz-hero">
+    <div class="container">
+      <h1><i class="fas fa-brain" style="margin-right: 12px;"></i>Quiz Hardware Komputer</h1>
+      <p>Uji pemahaman Anda tentang komponen-komponen hardware komputer</p>
+    </div>
+  </section>
+
+  <!-- QUIZ CONTAINER -->
+  <div class="quiz-container">
+    <div class="quiz-card" id="quizCard">
+
+      <!-- START SCREEN -->
+      <div class="quiz-start" id="quizStart">
+        <h2>🎯 Siap Uji Pengetahuan?</h2>
+        <p>Quiz ini berisi pertanyaan seputar komponen hardware komputer. Jawab dengan benar sebanyak mungkin!</p>
+        <div class="quiz-rules">
+          <div class="quiz-rule">
+            <i class="fas fa-question-circle"></i>
+            <div><strong>10 Pertanyaan</strong><span>Dipilih secara acak dari 15 soal</span></div>
+          </div>
+          <div class="quiz-rule">
+            <i class="fas fa-clock"></i>
+            <div><strong>30 Detik / Soal</strong><span>Jawab sebelum waktu habis</span></div>
+          </div>
+          <div class="quiz-rule">
+            <i class="fas fa-star"></i>
+            <div><strong>Skor Langsung</strong><span>Lihat skor di akhir quiz</span></div>
+          </div>
+          <div class="quiz-rule">
+            <i class="fas fa-lightbulb"></i>
+            <div><strong>Penjelasan</strong><span>Setiap jawaban disertai penjelasan</span></div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="startQuiz()" style="font-size: 1.1rem; padding: 18px 48px;">
+          <i class="fas fa-play-circle"></i> Mulai Quiz
+        </button>
+      </div>
+
+      <!-- QUIZ ACTIVE SCREEN -->
+      <div id="quizActive" style="display:none;">
+        <div class="quiz-header">
+          <span class="quiz-score-display" id="scoreDisplay">Skor: 0</span>
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="progressFill" style="width: 0%;"></div>
+          </div>
+          <div class="quiz-timer" id="timerDisplay">
+            <i class="fas fa-clock"></i> <span id="timerText">30</span>
+          </div>
+        </div>
+
+        <div class="quiz-body" id="quizBody">
+          <div class="quiz-question-number" id="questionNumber">Soal 1 dari 10</div>
+          <div class="quiz-question" id="questionText">Loading...</div>
+          <div class="quiz-options" id="optionsContainer"></div>
+          <div class="quiz-explanation" id="explanationBox"></div>
+        </div>
+
+        <div class="quiz-footer">
+          <span id="quizInfo" style="font-size: 0.85rem; color: var(--gray-400);">Pilih jawaban untuk melanjutkan</span>
+          <button class="btn-next" id="btnNext" onclick="nextQuestion()" disabled>
+            Selanjutnya <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTS SCREEN -->
+      <div class="quiz-results" id="quizResults">
+        <div class="result-circle">
+          <span class="result-score" id="resultScore">0</span>
+          <span class="result-total" id="resultTotal">/ 10</span>
+        </div>
+        <div class="result-grade" id="resultGrade">Loading...</div>
+        <p class="result-message" id="resultMessage">Loading...</p>
+        <div class="result-actions">
+          <button class="btn-primary" onclick="restartQuiz()">
+            <i class="fas fa-redo"></i> Coba Lagi
+          </button>
+          <a href="index.html#hardware" class="btn-secondary" style="color: var(--gray-700); border-color: var(--gray-300);">
+            <i class="fas fa-book-open"></i> Belajar Lagi
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+        &copy; 2026 HardwareEdu. Dibuat untuk pembelajaran interaktif hardware komputer.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/quiz-data.js"></script>
+  <script src="js/quiz.js"></script>
+  <script>
+    // Mobile menu
+    const toggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = toggle.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      });
+    }
+  </script>
+</body>
+</html>
