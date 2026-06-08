@@ -116,34 +116,46 @@ function renderHardwareCards() {
   setTimeout(() => initScrollAnimations(), 100);
 }
 
-// ---- Supabase Setup & Testimonials ----
-const SUPABASE_URL = 'https://auwnuerbyhnmmuphccsw.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_5YmfyOsJnzZ5axQb8BWUcw_jb6jajqw';
-let supabaseClient;
-if (window.supabase) {
-  supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+// ---- Firebase Setup & Testimonials ----
+const firebaseConfig = {
+  apiKey: "AIzaSyAWdviMJNmm5aqQlHBQrE6TUSR1xy_TUvc",
+  authDomain: "hardware-learning.firebaseapp.com",
+  projectId: "hardware-learning",
+  storageBucket: "hardware-learning.firebasestorage.app",
+  messagingSenderId: "937731513118",
+  appId: "1:937731513118:web:8424e0f04bba7b4802870f"
+};
+
+let db;
+if (window.firebase) {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  db = firebase.firestore();
 } else {
-  console.error("Supabase CDN failed to load.");
+  console.error("Firebase CDN failed to load.");
 }
 
 async function fetchAndRenderTestimonials() {
   const grid = document.getElementById('testimonialsGrid');
-  if (!grid || !supabaseClient) return;
+  if (!grid || !db) return;
 
   grid.innerHTML = '<p style="text-align:center; width:100%; color:var(--gray-500);">Memuat testimoni...</p>';
 
   try {
-    const { data, error } = await supabaseClient
-      .from('testimonials')
-      .select('*')
-      .order('created_at', { ascending: false });
+    const snapshot = await db.collection('testimonials')
+                             .orderBy('created_at', 'desc')
+                             .get();
 
-    if (error) throw error;
-
-    if (data.length === 0) {
+    if (snapshot.empty) {
       grid.innerHTML = '<p style="text-align:center; width:100%; color:var(--gray-500);">Belum ada testimoni. Jadilah yang pertama!</p>';
       return;
     }
+
+    const data = [];
+    snapshot.forEach(doc => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
 
     grid.innerHTML = data.map((t, index) => `
       <div class="testimonial-card fade-up" style="transition-delay: ${index * 0.1}s;">
@@ -163,7 +175,7 @@ async function fetchAndRenderTestimonials() {
     setTimeout(() => initScrollAnimations(), 100);
   } catch (error) {
     console.error('Error fetching testimonials:', error);
-    grid.innerHTML = '<p style="text-align:center; width:100%; color:var(--danger);">Gagal memuat testimoni.</p>';
+    grid.innerHTML = '<p style="text-align:center; width:100%; color:var(--danger);">Gagal memuat testimoni. Pastikan konfigurasi Firebase benar.</p>';
   }
 }
 
@@ -179,8 +191,8 @@ function showTestimonialForm() {
 // ---- Submit Testimonial Form ----
 async function submitTestimonial(e) {
   e.preventDefault();
-  if (!supabaseClient) {
-    alert("Koneksi ke Supabase gagal. Silakan muat ulang halaman.");
+  if (!db) {
+    alert("Koneksi ke Firebase gagal. Silakan muat ulang halaman atau periksa konfigurasi.");
     return;
   }
   
@@ -196,11 +208,14 @@ async function submitTestimonial(e) {
   const avatar = name.charAt(0).toUpperCase();
 
   try {
-    const { error } = await supabaseClient
-      .from('testimonials')
-      .insert([{ name, role, rating, text, avatar }]);
-
-    if (error) throw error;
+    await db.collection('testimonials').add({
+      name,
+      role,
+      rating,
+      text,
+      avatar,
+      created_at: firebase.firestore.FieldValue.serverTimestamp()
+    });
 
     // Clear form
     document.getElementById('testimonialForm').reset();
@@ -215,7 +230,7 @@ async function submitTestimonial(e) {
     fetchAndRenderTestimonials();
   } catch (error) {
     console.error('Error submitting testimonial:', error);
-    alert('Gagal mengirim: Pastikan Anda sudah menjalankan perintah SQL untuk membuat tabel di Supabase.');
+    alert('Gagal mengirim: Pastikan database Firebase sudah disiapkan dan rules mengizinkan write.');
   } finally {
     submitBtn.innerHTML = originalText;
     submitBtn.disabled = false;
