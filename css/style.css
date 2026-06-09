@@ -1145,10 +1145,16 @@ ul { list-style: none; }
 
 .detail-full-width {
   grid-column: 1 / -1;
+  width: 100%;
+  max-width: 1024px;
+  justify-self: center;
 }
 
 .detail-video {
   grid-column: 1 / -1;
+  width: 100%;
+  max-width: 1024px;
+  justify-self: center;
 }
 
 .video-wrapper {
