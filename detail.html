@@ -21,7 +21,7 @@
         <a href="index.html#about" style="color: var(--gray-600);">Tentang</a>
         <a href="index.html#hardware" style="color: var(--gray-600);">Materi</a>
 
-        <a href="quiz.html" style="color: #fff; background: var(--primary); padding: 10px 24px; border-radius: 50px;">Quiz</a>
+        <a href="quiz.html" class="nav-cta">Quiz</a>
       </div>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu" style="color: var(--gray-700);">
         <i class="fas fa-bars"></i>
@@ -94,6 +94,20 @@
         `<span class="spec-tag">${s}</span>`
       ).join('');
 
+      // Get image
+      const imgMap = {
+        'motherboard': 'motheboard.jpg',
+        'processor': 'cpu.png',
+        'ram': 'ram.png',
+        'harddisk': 'SSD.jpg',
+        'vga': 'vga.png',
+        'power-supply': 'power supply.png',
+        'keyboard': 'keyboard.png',
+        'mouse': 'mouse.png',
+        'monitor': 'monitor.jpg'
+      };
+      const hwImage = imgMap[hw.id] || 'bg.png';
+
       // Render detail content
       document.getElementById('detailGrid').innerHTML = `
         <div class="detail-section">
@@ -111,13 +125,13 @@
           <p>Berikut adalah spesifikasi umum dari ${hw.name}:</p>
           <div class="spec-tags">${specsHtml}</div>
         </div>
-
-
-
+        <div class="detail-section" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+          <img src="images/${hwImage}" alt="${hw.name}" style="max-width: 100%; max-height: 250px; object-fit: contain; border-radius: var(--radius); mix-blend-mode: multiply;">
+        </div>
         <div class="detail-section detail-video">
           <h3><i class="fas fa-video"></i> Video Pembelajaran</h3>
           <div class="video-wrapper">
-            <iframe src="${hw.videoUrl}" title="Video ${hw.name}" allowfullscreen loading="lazy"></iframe>
+            <iframe src="${hw.videoUrl}?playsinline=1&rel=0" title="Video ${hw.name}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
 
